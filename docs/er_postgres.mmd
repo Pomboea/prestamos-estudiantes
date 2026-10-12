@@ -1,0 +1,68 @@
+erDiagram
+  rol ||--o{ usuario : tiene
+  rol ||--o{ moduloxrol : permisos
+  modulo ||--o{ moduloxrol : permisos
+  facultad ||--o{ programa_academico : agrupa
+  programa_academico ||--o{ usuario : cursa
+  usuario ||--o{ objeto : publica
+  categoria_objeto ||--o{ objeto : clasifica
+  condicion_objeto ||--o{ objeto : condicion_actual
+  objeto ||--o{ imagen_objeto : fotos
+  objeto ||--o{ solicitud_prestamo : solicitado
+  usuario ||--o{ solicitud_prestamo : solicita
+  estado_solicitud ||--o{ solicitud_prestamo : estado
+  solicitud_prestamo ||--o| prestamo : genera
+  condicion_objeto ||--o{ prestamo : entrega
+  prestamo ||--o| devolucion : cierra
+  condicion_objeto ||--o{ devolucion : recibe
+  prestamo ||--o{ calificacion : evalua
+  usuario ||--o{ calificacion : evaluador_evaluado
+  usuario ||--o{ notificacion : recibe
+  usuario ||--o{ sancion : sancionado
+  prestamo ||--o{ sancion : origina
+  rol { int id_rol PK
+        varchar nombre UK
+        boolean estado
+        timestamp creado
+        timestamp actualizado }
+  modulo { int id_modulo PK
+        varchar nombre UK
+        varchar ruta UK
+        boolean estado }
+  moduloxrol { int id_moduloxrol PK
+        int id_rol FK
+        int id_modulo FK
+        boolean puede_leer
+        boolean puede_crear
+        boolean puede_actualizar
+        boolean puede_eliminar
+        boolean estado }
+  usuario { int id_usuario PK
+        varchar correo UK
+        varchar codigo_estudiantil UK
+        varchar contrasena_hash
+        int id_rol FK
+        int id_programa FK
+        boolean estado }
+  objeto { int id_objeto PK
+        varchar codigo UK
+        varchar nombre
+        int id_categoria FK
+        int id_condicion FK
+        int id_propietario FK
+        boolean disponible
+        boolean estado }
+  solicitud_prestamo { int id_solicitud PK
+        varchar codigo UK
+        int id_objeto FK
+        int id_solicitante FK
+        int id_estado_solicitud FK
+        date fecha_inicio_deseada
+        date fecha_fin_deseada }
+  prestamo { int id_prestamo PK
+        int id_solicitud FK,UK
+        date fecha_devolucion_esperada
+        int id_condicion_entrega FK }
+  devolucion { int id_devolucion PK
+        int id_prestamo FK,UK
+        int id_condicion_devolucion FK }

@@ -1,0 +1,57 @@
+### API auxiliar (Express + MySQL). Obtenga el token en la API FastAPI (/auth/login) y péguelo aquí.
+@base = http://localhost:3000
+@token = PEGUE_AQUI_EL_ACCESS_TOKEN
+
+### Salud
+GET {{base}}/salud
+
+### Puntos de entrega (lectura pública)
+GET {{base}}/api/puntos-entrega
+
+### Crear punto (requiere token de admin)
+POST {{base}}/api/puntos-entrega
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"codigo": "PE-LAB", "nombre": "Laboratorio de Física", "ubicacion": "Bloque C", "sede": "Sede Principal"}
+
+### Actualizar punto
+PUT {{base}}/api/puntos-entrega/4
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"ubicacion": "Bloque C, piso 2"}
+
+### Borrado lógico
+DELETE {{base}}/api/puntos-entrega/4
+Authorization: Bearer {{token}}
+
+### Horarios
+GET {{base}}/api/horarios
+
+### Crear horario (admin)
+POST {{base}}/api/horarios
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"id_punto": 2, "dia_semana": 3, "hora_apertura": "08:00", "hora_cierre": "17:00"}
+
+### Tipos de incidencia
+GET {{base}}/api/tipos-incidencia
+
+### Reportes (requiere token de cualquier usuario)
+GET {{base}}/api/reportes-incidencia
+Authorization: Bearer {{token}}
+
+### Crear reporte (estudiante)
+POST {{base}}/api/reportes-incidencia
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"id_tipo": 1, "id_punto": 1, "id_prestamo": 1, "descripcion": "La calculadora llegó con la tapa rota"}
+
+### Sin token -> 401
+POST {{base}}/api/tipos-incidencia
+Content-Type: application/json
+
+{"nombre": "X"}

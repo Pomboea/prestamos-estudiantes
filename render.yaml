@@ -1,0 +1,45 @@
+# Blueprint de Render (raíz del repositorio): BD PostgreSQL gratuita + API FastAPI + API Express.
+# La BD MySQL de la API Express se crea aparte (Railway/Aiven/Clever Cloud) y se pega en MYSQL_URL.
+# En Render: New > Blueprint > conecte el repositorio de GitHub.
+databases:
+  - name: prestamos-db
+    plan: free
+    databaseName: prestamos
+    user: prestamos
+
+services:
+  - type: web
+    name: api-prestamos-fastapi
+    runtime: python
+    plan: free
+    rootDir: api-fastapi
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m app.db.inicializar && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /salud
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: DATABASE_URL
+        fromDatabase:
+          name: prestamos-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "60"
+
+  - type: web
+    name: api-prestamos-express
+    runtime: node
+    plan: free
+    rootDir: api-express
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /salud
+    envVars:
+      - key: MYSQL_URL
+        sync: false
+      - key: DB_SSL
+        value: "false"
+      - key: SECRET_KEY
+        sync: false   # debe ser igual a la SECRET_KEY de la API FastAPI

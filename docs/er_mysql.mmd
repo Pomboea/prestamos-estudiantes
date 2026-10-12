@@ -1,0 +1,36 @@
+erDiagram
+  punto_entrega ||--o{ horario_atencion : atiende
+  punto_entrega ||--o{ reporte_incidencia : lugar
+  tipo_incidencia ||--o{ reporte_incidencia : clasifica
+  punto_entrega { int id_punto PK
+        varchar codigo UK
+        varchar nombre UK
+        varchar ubicacion
+        varchar sede
+        boolean estado
+        timestamp creado
+        timestamp actualizado }
+  horario_atencion { int id_horario PK
+        int id_punto FK
+        tinyint dia_semana "UK(id_punto,dia_semana)"
+        time hora_apertura
+        time hora_cierre
+        boolean estado
+        timestamp creado
+        timestamp actualizado }
+  tipo_incidencia { int id_tipo PK
+        varchar nombre UK
+        enum gravedad
+        boolean estado
+        timestamp creado
+        timestamp actualizado }
+  reporte_incidencia { int id_reporte PK
+        varchar codigo UK
+        int id_tipo FK
+        int id_punto FK
+        int id_prestamo "ref BD principal"
+        int id_usuario_reporta "ref BD principal"
+        boolean resuelto
+        boolean estado
+        timestamp creado
+        timestamp actualizado }

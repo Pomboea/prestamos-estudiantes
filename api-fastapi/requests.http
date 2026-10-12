@@ -1,0 +1,111 @@
+### Pruebas manuales (extensión REST Client / Thunder Client de VS Code)
+@base = http://localhost:8000
+
+### Login estudiante (formulario OAuth2)
+# @name loginAna
+POST {{base}}/auth/login
+Content-Type: application/x-www-form-urlencoded
+
+username=ana@uni.edu.co&password=Estudiante123*
+
+### Login JSON (admin)
+# @name loginAdmin
+POST {{base}}/auth/login-json
+Content-Type: application/json
+
+{"correo": "admin@uni.edu.co", "contrasena": "Admin123*"}
+
+### Login Carlos
+# @name loginCarlos
+POST {{base}}/auth/login-json
+Content-Type: application/json
+
+{"correo": "carlos@uni.edu.co", "contrasena": "Estudiante123*"}
+
+@tokenAna = {{loginAna.response.body.access_token}}
+@tokenAdmin = {{loginAdmin.response.body.access_token}}
+@tokenCarlos = {{loginCarlos.response.body.access_token}}
+
+### Registro de estudiante
+POST {{base}}/auth/registro
+Content-Type: application/json
+
+{"nombres": "Laura", "apellidos": "Ruiz", "correo": "laura@uni.edu.co", "codigo_estudiantil": "2021777", "contrasena": "Clave123*", "id_programa": 1}
+
+### Sin token -> 401
+GET {{base}}/objetos
+
+### Estudiante pide roles -> 403
+GET {{base}}/roles
+Authorization: Bearer {{tokenAna}}
+
+### Admin lista roles
+GET {{base}}/roles
+Authorization: Bearer {{tokenAdmin}}
+
+### Objetos disponibles
+GET {{base}}/flujo/objetos-disponibles
+Authorization: Bearer {{tokenCarlos}}
+
+### 1. Ana publica un objeto
+POST {{base}}/flujo/publicar-objeto
+Authorization: Bearer {{tokenAna}}
+Content-Type: application/json
+
+{"codigo": "OBJ-0100", "nombre": "Bata de laboratorio", "id_categoria": 6, "id_condicion": 2}
+
+### 2. Carlos solicita el objeto 1
+# @name solicitud
+POST {{base}}/flujo/solicitar
+Authorization: Bearer {{tokenCarlos}}
+Content-Type: application/json
+
+{"id_objeto": 1, "fecha_inicio_deseada": "2026-10-12", "fecha_fin_deseada": "2026-10-20", "mensaje": "Para el parcial de cálculo"}
+
+### 3. Ana aprueba
+POST {{base}}/flujo/solicitudes/{{solicitud.response.body.id_solicitud}}/decision
+Authorization: Bearer {{tokenAna}}
+Content-Type: application/json
+
+{"aprobar": true, "comentario": "Recógela en biblioteca"}
+
+### 4. Ana registra la entrega (préstamo)
+# @name prestamo
+POST {{base}}/flujo/solicitudes/{{solicitud.response.body.id_solicitud}}/prestar
+Authorization: Bearer {{tokenAna}}
+Content-Type: application/json
+
+{}
+
+### Mis préstamos (Carlos)
+GET {{base}}/flujo/mis-prestamos
+Authorization: Bearer {{tokenCarlos}}
+
+### 5. Devolución
+POST {{base}}/flujo/prestamos/{{prestamo.response.body.id_prestamo}}/devolver
+Authorization: Bearer {{tokenAna}}
+Content-Type: application/json
+
+{"id_condicion_devolucion": 2, "observaciones": "Sin novedades"}
+
+### CRUD: crear categoría (admin)
+POST {{base}}/categorias
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{"nombre": "Tablets", "descripcion": "Tabletas"}
+
+### Actualizar (ver que 'actualizado' cambia y 'creado' no)
+PUT {{base}}/categorias/7
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{"descripcion": "Tabletas y iPads"}
+
+### Borrado lógico (estado=false)
+DELETE {{base}}/categorias/7
+Authorization: Bearer {{tokenAdmin}}
+
+### Incluir inactivos (admin)
+GET {{base}}/categorias?incluir_inactivos=true
+Authorization: Bearer {{tokenAdmin}}

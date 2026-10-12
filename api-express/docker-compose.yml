@@ -1,0 +1,29 @@
+# Entorno local: API Express + MySQL 8. Uso: docker compose up --build
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: prestamos_aux
+      MYSQL_USER: prestamos
+      MYSQL_PASSWORD: prestamos
+    ports: ["3307:3306"]
+    volumes: [mysqldata:/var/lib/mysql]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      retries: 15
+  api:
+    build: .
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: prestamos
+      DB_PASSWORD: prestamos
+      DB_NAME: prestamos_aux
+      SECRET_KEY: ${SECRET_KEY:-cambie-esta-clave-secreta}
+    ports: ["3000:3000"]
+    depends_on:
+      mysql: { condition: service_healthy }
+volumes:
+  mysqldata:
