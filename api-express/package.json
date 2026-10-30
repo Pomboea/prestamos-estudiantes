@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node src/inicializar.js && node src/server.js",
     "dev": "node --watch src/server.js",
-    "test": "node --test --test-concurrency=1 tests/",
+    "test": "node --test --test-concurrency=1 tests/api.test.js",
     "init-db": "node src/inicializar.js"
   },
   "keywords": [],

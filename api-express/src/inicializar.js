@@ -1,4 +1,5 @@
-// Crea tablas y datos semilla SOLO si la BD está vacía. Uso: node src/inicializar.js
+// Crea tablas y datos semilla si la BD está vacía o tiene la semilla anterior al Taller 1
+// (sin el punto 'PE-POS'). Con FORZAR_SEMILLA=true siempre la recrea. Uso: node src/inicializar.js
 const fs = require('fs');
 const path = require('path');
 const mysql = require('mysql2/promise');
@@ -15,8 +16,13 @@ require('dotenv').config({ quiet: true });
       database: process.env.DB_NAME || 'prestamos_aux', multipleStatements: true, ssl,
     });
   const [t] = await c.query("SELECT COUNT(*) AS n FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = 'punto_entrega'");
+  let vigente = false;
   if (t[0].n > 0) {
-    console.log('La base de datos ya tiene tablas; no se modifica.');
+    const [p] = await c.query("SELECT COUNT(*) AS n FROM punto_entrega WHERE codigo = 'PE-POS'");
+    vigente = p[0].n > 0;
+  }
+  if (vigente && process.env.FORZAR_SEMILLA !== 'true') {
+    console.log('La base de datos ya tiene la semilla del Taller 1; no se modifica.');
   } else {
     await c.query(fs.readFileSync(path.join(__dirname, '../sql/schema.sql'), 'utf8'));
     await c.query(fs.readFileSync(path.join(__dirname, '../sql/seed.sql'), 'utf8'));

@@ -74,7 +74,7 @@ test('validación 422 y duplicado 409', async () => {
 
 test('CRUD completo con borrado lógico y auditoría (creado fijo, actualizado cambia)', async () => {
   const c = await request(app).post('/api/puntos-entrega').set('Authorization', ADMIN)
-    .send({ codigo: 'PE-LAB', nombre: 'Laboratorio de Física', ubicacion: 'Bloque C', sede: 'Sede Principal' });
+    .send({ codigo: 'PE-TEST', nombre: 'Sala de pruebas automáticas', ubicacion: 'Bloque C', sede: 'Sede Principal' });
   assert.strictEqual(c.status, 201); assert.strictEqual(c.body.estado, 1);
   const id = c.body.id_punto;
   await esperar(1100);

@@ -41,7 +41,7 @@ def crear_router_crud(*, modelo, prefijo: str, modulo: str, etiqueta: str,
             raise HTTPException(status.HTTP_404_NOT_FOUND, f"{etiqueta}: registro {id_} no encontrado")
         return obj
 
-    @router.get("", response_model=list[esquema_salida], summary=f"Listar {etiqueta} (solo activos por defecto)")
+    @router.get("/", response_model=list[esquema_salida], summary=f"Listar {etiqueta} (solo activos por defecto)")
     def listar(incluir_inactivos: bool = Query(False, description="Solo admin: incluir registros con estado=false"),
                saltar: int = Query(0, ge=0), limite: int = Query(100, ge=1, le=500),
                bd: Session = Depends(obtener_bd), usuario: Usuario = Depends(requiere_permiso(modulo, "leer"))):
@@ -55,7 +55,7 @@ def crear_router_crud(*, modelo, prefijo: str, modulo: str, etiqueta: str,
                 usuario: Usuario = Depends(requiere_permiso(modulo, "leer"))):
         return buscar(bd, id_, es_admin(bd, usuario))
 
-    @router.post("", response_model=esquema_salida, status_code=201, summary=f"Crear {etiqueta}")
+    @router.post("/", response_model=esquema_salida, status_code=201, summary=f"Crear {etiqueta}")
     def crear(datos: esquema_crear, bd: Session = Depends(obtener_bd),
               usuario: Usuario = Depends(requiere_permiso(modulo, "crear"))):
         valores = datos.model_dump()
@@ -87,6 +87,6 @@ def crear_router_crud(*, modelo, prefijo: str, modulo: str, etiqueta: str,
             verificar_acceso(bd, obj, usuario)
         obj.estado = False          # borrado lógico: el registro NO se elimina físicamente
         guardar(bd, obj)
-        return {"mensaje": f"{etiqueta} {id_} eliminado lógicamente (estado=false)", "id": id_, "estado": False}
+        return {"mensaje": f"{etiqueta}: registro eliminado lógicamente (estado=false)", "id": id_, "estado": False}
 
     return router

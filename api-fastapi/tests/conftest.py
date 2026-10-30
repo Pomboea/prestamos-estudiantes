@@ -33,7 +33,7 @@ def cliente():
 
 
 def token(cliente, correo, clave):
-    r = cliente.post("/auth/login", data={"username": correo, "password": clave})
+    r = cliente.post("/api/auth/login", data={"username": correo, "password": clave})
     assert r.status_code == 200, r.text
     return {"Authorization": f"Bearer {r.json()['access_token']}"}
 

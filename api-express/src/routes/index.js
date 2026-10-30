@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const { crearCrud } = require('./crud');
 const { requiereToken, requiereRol } = require('../middleware/auth');
 
-const soloAdmin = [requiereToken, requiereRol('admin')];
+const soloAdmin = [requiereToken, requiereRol('admin', 'coordinador')];
 
 const puntos = crearCrud({
   tabla: 'punto_entrega', pk: 'id_punto', leerPublico: true, permisoEscritura: soloAdmin,
@@ -49,7 +49,7 @@ const reportes = crearCrud({
     codigo: `INC-${crypto.randomBytes(5).toString('hex').toUpperCase()}`,
     id_usuario_reporta: req.usuario.id,
   }),
-  verificarDueno: (req, fila) => req.usuario.rol === 'admin' || fila.id_usuario_reporta === req.usuario.id,
+  verificarDueno: (req, fila) => ['admin', 'coordinador'].includes(req.usuario.rol) || fila.id_usuario_reporta === req.usuario.id,
 });
 
 module.exports = { puntos, horarios, tipos, reportes };

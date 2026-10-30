@@ -1,0 +1,482 @@
+T|calificacion
+C|id_calificacion|integer|0|0|1|nextval('calificacion_id_calificacion_seq'::regclass)
+C|id_prestamo|integer|0|0|0|
+C|id_evaluador|integer|0|0|0|
+C|id_evaluado|integer|0|0|0|
+C|puntaje|smallint|0|0|0|
+C|comentario|character varying|300|1|0|
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	6	9	16	3	Muy puntual y cuidadoso	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	7	10	17	4	Devolvió en buen estado	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	8	11	18	3	Muy puntual y cuidadoso	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	9	12	19	4	Devolvió en buen estado	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	10	13	20	3	Devolvió en buen estado	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	11	14	21	3	Devolvió en buen estado	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	12	15	22	4	Recomendado	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	13	16	23	5	Excelente trato	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	14	17	4	4	Recomendado	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	15	18	5	4	Excelente trato	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|11	16	19	6	5	Excelente trato	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|12	17	20	7	5	Recomendado	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|13	18	21	8	3	Recomendado	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|14	19	22	9	4	Excelente trato	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|15	20	23	10	3	Recomendado	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|16	6	16	9	5	Excelente trato	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|17	7	17	10	3	Algo de retraso pero cumplió	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|18	8	18	11	5	Recomendado	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|19	9	19	12	5	Recomendado	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|20	10	20	13	5	Excelente trato	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|categoria_objeto
+C|id_categoria|integer|0|0|1|nextval('categoria_objeto_id_categoria_seq'::regclass)
+C|nombre|character varying|60|0|0|
+C|descripcion|character varying|200|1|0|
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	Calculadoras	Calculadoras científicas y gráficas	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	Libros	Libros y textos académicos	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	Cargadores	Cargadores de portátil y celular	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	Computadores	Portátiles y tabletas	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	Audífonos	Audífonos y diademas	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	Materiales de laboratorio	Batas, gafas y kits de laboratorio	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	Instrumentos de dibujo	Escuadras, compases y reglas	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	Equipos deportivos	Balones, raquetas y conos	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	Instrumentos musicales	Guitarras, teclados y flautas	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	Accesorios tecnológicos	Mouse, USB, adaptadores HDMI	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|condicion_objeto
+C|id_condicion|integer|0|0|1|nextval('condicion_objeto_id_condicion_seq'::regclass)
+C|nombre|character varying|40|0|0|
+C|descripcion|character varying|200|1|0|
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	Nuevo	Sin uso	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	Como nuevo	Usado una o dos veces	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	Excelente	Sin marcas de uso	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	Muy bueno	Marcas mínimas	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	Bueno	Uso normal sin daños	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	Aceptable	Funciona, con desgaste	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	Regular	Desgaste visible	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	Desgastado	Desgaste fuerte	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	Con fallas	Funciona parcialmente	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	Dañado	Presenta daños	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|devolucion
+C|id_devolucion|integer|0|0|1|nextval('devolucion_id_devolucion_seq'::regclass)
+C|id_prestamo|integer|0|0|0|
+C|fecha_devolucion|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|id_condicion_devolucion|integer|0|0|0|
+C|observaciones|character varying|300|1|0|
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	6	2026-09-16 16:00:00	5	Devuelto a tiempo	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	7	2026-09-18 16:00:00	5	Devuelto a tiempo	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	8	2026-09-20 16:00:00	5	Devuelto a tiempo	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	9	2026-09-22 16:00:00	7	Devuelto con desgaste	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	10	2026-09-24 16:00:00	5	Devuelto a tiempo	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	11	2026-09-26 16:00:00	5	Devuelto a tiempo	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	12	2026-09-28 16:00:00	5	Devuelto a tiempo	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	13	2026-09-30 16:00:00	7	Devuelto con desgaste	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	14	2026-10-02 16:00:00	5	Devuelto a tiempo	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	15	2026-10-04 16:00:00	5	Devuelto a tiempo	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|11	16	2026-10-06 16:00:00	5	Devuelto a tiempo	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|12	17	2026-10-08 16:00:00	7	Devuelto con desgaste	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|13	18	2026-10-10 16:00:00	5	Devuelto a tiempo	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|14	19	2026-10-12 16:00:00	5	Devuelto a tiempo	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|15	20	2026-10-14 16:00:00	5	Devuelto a tiempo	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|estado_solicitud
+C|id_estado_solicitud|integer|0|0|1|nextval('estado_solicitud_id_estado_solicitud_seq'::regclass)
+C|nombre|character varying|30|0|0|
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	Pendiente	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	Aprobada	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	Rechazada	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	Cancelada	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	Finalizada	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	En revisión	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	Entregada	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	Vencida	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	Devuelta	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	Expirada	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|facultad
+C|id_facultad|integer|0|0|1|nextval('facultad_id_facultad_seq'::regclass)
+C|nombre|character varying|100|0|0|
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	Ingeniería	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	Ciencias Económicas y Administrativas	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	Ciencias de la Salud	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	Ciencias Básicas	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	Derecho y Ciencias Políticas	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	Educación	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	Arquitectura y Diseño	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	Ciencias Sociales y Humanas	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	Comunicación	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	Artes	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|imagen_objeto
+C|id_imagen|integer|0|0|1|nextval('imagen_objeto_id_imagen_seq'::regclass)
+C|id_objeto|integer|0|0|0|
+C|url|character varying|300|0|0|
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	1	https://picsum.photos/seed/obj1/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	2	https://picsum.photos/seed/obj2/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	3	https://picsum.photos/seed/obj3/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	4	https://picsum.photos/seed/obj4/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	5	https://picsum.photos/seed/obj5/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	6	https://picsum.photos/seed/obj6/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	7	https://picsum.photos/seed/obj7/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	8	https://picsum.photos/seed/obj8/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	9	https://picsum.photos/seed/obj9/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	10	https://picsum.photos/seed/obj10/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|11	11	https://picsum.photos/seed/obj11/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|12	12	https://picsum.photos/seed/obj12/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|13	13	https://picsum.photos/seed/obj13/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|14	14	https://picsum.photos/seed/obj14/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|15	15	https://picsum.photos/seed/obj15/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|16	16	https://picsum.photos/seed/obj16/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|17	17	https://picsum.photos/seed/obj17/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|18	18	https://picsum.photos/seed/obj18/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|19	19	https://picsum.photos/seed/obj19/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|20	20	https://picsum.photos/seed/obj20/400/300	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|modulo
+C|id_modulo|integer|0|0|1|nextval('modulo_id_modulo_seq'::regclass)
+C|nombre|character varying|60|0|0|
+C|ruta|character varying|100|0|0|
+C|descripcion|character varying|200|1|0|
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	roles	/roles	Gestión de roles	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	modulos	/modulos	Gestión de módulos	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	permisos	/moduloxrol	Permisos rol-módulo	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	usuarios	/usuarios	Gestión de usuarios	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	facultades	/facultades	Facultades	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	programas	/programas	Programas académicos	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	categorias	/categorias	Categorías de objetos	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	condiciones	/condiciones	Condiciones físicas del objeto	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	objetos	/objetos	Objetos publicados	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	imagenes	/imagenes	Imágenes de objetos	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|11	estados_solicitud	/estados-solicitud	Estados de solicitud	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|12	solicitudes	/solicitudes	Solicitudes de préstamo	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|13	prestamos	/prestamos	Préstamos	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|14	devoluciones	/devoluciones	Devoluciones	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|15	calificaciones	/calificaciones	Calificaciones entre estudiantes	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|16	notificaciones	/notificaciones	Notificaciones	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|17	sanciones	/sanciones	Sanciones	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|18	puntos_entrega	/puntos-entrega	Puntos de entrega (API Express)	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|19	horarios	/horarios	Horarios de atención (API Express)	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|20	tipos_incidencia	/tipos-incidencia	Tipos de incidencia (API Express)	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|21	reportes_incidencia	/reportes-incidencia	Reportes de incidencia (API Express)	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|moduloxrol
+C|id_moduloxrol|integer|0|0|1|nextval('moduloxrol_id_moduloxrol_seq'::regclass)
+C|id_rol|integer|0|0|0|
+C|id_modulo|integer|0|0|0|
+C|puede_leer|boolean|0|0|0|true
+C|puede_crear|boolean|0|0|0|false
+C|puede_actualizar|boolean|0|0|0|false
+C|puede_eliminar|boolean|0|0|0|false
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	1	1	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	1	2	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	1	3	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	1	4	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	1	5	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	1	6	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	1	7	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	1	8	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	1	9	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	1	10	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|11	1	11	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|12	1	12	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|13	1	13	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|14	1	14	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|15	1	15	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|16	1	16	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|17	1	17	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|18	1	18	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|19	1	19	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|20	1	20	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|21	1	21	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|22	2	1	1	0	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|23	2	4	1	0	1	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|24	2	5	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|25	2	6	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|26	2	7	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|27	2	8	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|28	2	9	1	0	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|29	2	10	1	0	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|30	2	11	1	0	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|31	2	12	1	0	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|32	2	13	1	0	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|33	2	14	1	0	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|34	2	15	1	0	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|35	2	16	1	1	1	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|36	2	17	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|37	2	18	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|38	2	19	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|39	2	20	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|40	2	21	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|41	3	7	1	0	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|42	3	8	1	0	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|43	3	9	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|44	3	10	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|45	3	11	1	0	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|46	3	12	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|47	3	13	1	1	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|48	3	14	1	1	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|49	3	15	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|50	3	16	1	0	1	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|51	3	17	1	0	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|52	3	18	1	0	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|53	3	19	1	0	0	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|54	3	21	1	1	1	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|notificacion
+C|id_notificacion|integer|0|0|1|nextval('notificacion_id_notificacion_seq'::regclass)
+C|codigo|character varying|40|0|0|('NOT-'::text || substr(md5(((random())::text || (clock_timestamp())::text)), 1, 12))
+C|id_usuario|integer|0|0|0|
+C|titulo|character varying|100|0|0|
+C|mensaje|character varying|300|0|0|
+C|leida|boolean|0|0|0|false
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	NOT-0001	4	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	NOT-0002	5	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	NOT-0003	6	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	NOT-0004	7	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	NOT-0005	8	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	NOT-0006	9	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	NOT-0007	10	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	NOT-0008	11	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	NOT-0009	12	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	NOT-0010	13	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|11	NOT-0011	14	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|12	NOT-0012	15	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|13	NOT-0013	16	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|14	NOT-0014	17	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|15	NOT-0015	18	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|16	NOT-0016	19	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|17	NOT-0017	20	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|18	NOT-0018	21	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|19	NOT-0019	22	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|20	NOT-0020	23	Bienvenida	Bienvenido(a) al sistema de préstamos entre estudiantes	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|objeto
+C|id_objeto|integer|0|0|1|nextval('objeto_id_objeto_seq'::regclass)
+C|codigo|character varying|30|0|0|
+C|nombre|character varying|100|0|0|
+C|descripcion|character varying|300|1|0|
+C|id_categoria|integer|0|0|0|
+C|id_condicion|integer|0|0|0|
+C|id_propietario|integer|0|0|0|
+C|disponible|boolean|0|0|0|true
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	OBJ-0001	Calculadora Casio fx-991LA	Científica, con estuche	1	3	4	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	OBJ-0002	Cálculo de Stewart 8va ed.	Cálculo diferencial e integral	2	1	5	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	OBJ-0003	Cargador Lenovo 65W	USB-C punta delgada	3	1	6	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	OBJ-0004	Audífonos JBL Tune 510BT	Bluetooth	5	1	7	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	OBJ-0005	Portátil HP 14"	Intel i5, 8 GB RAM	4	2	8	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	OBJ-0006	Bata de laboratorio talla M	Manga larga, blanca	6	5	9	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	OBJ-0007	Juego de escuadras Faber-Castell	45° y 60°	7	5	10	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	OBJ-0008	Balón de voleibol Mikasa	Tamaño oficial	8	3	11	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	OBJ-0009	Guitarra acústica Yamaha C40	Con forro	9	5	12	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	OBJ-0010	Mouse Logitech M170	Inalámbrico	10	5	13	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|11	OBJ-0011	Calculadora TI-84 Plus	Gráfica	1	3	14	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|12	OBJ-0012	Física de Serway 10ma ed.	Tomo 1	2	3	15	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|13	OBJ-0013	Cargador Samsung 25W	USB-C carga rápida	3	2	16	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|14	OBJ-0014	Diadema Sony WH-CH520	Bluetooth	5	2	17	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|15	OBJ-0015	Tablet Samsung Galaxy Tab A8	10.5 pulgadas	4	2	18	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|16	OBJ-0016	Gafas de seguridad	Policarbonato	6	1	19	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|17	OBJ-0017	Compás Staedtler Mars	Con adaptador	7	3	20	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|18	OBJ-0018	Raqueta de tenis de mesa	Con 3 pelotas	8	5	21	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|19	OBJ-0019	Teclado Casio CT-S1	61 teclas	9	3	22	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|20	OBJ-0020	Adaptador HDMI a USB-C	4K	10	5	23	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|prestamo
+C|id_prestamo|integer|0|0|1|nextval('prestamo_id_prestamo_seq'::regclass)
+C|id_solicitud|integer|0|0|0|
+C|fecha_prestamo|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|fecha_devolucion_esperada|date|0|0|0|
+C|id_condicion_entrega|integer|0|0|0|
+C|observaciones|character varying|300|1|0|
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	1	2026-10-26 10:00:00	2026-11-02 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	2	2026-10-25 10:00:00	2026-11-01 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	3	2026-10-24 10:00:00	2026-10-31 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	4	2026-10-23 10:00:00	2026-10-30 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	5	2026-10-22 10:00:00	2026-10-29 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	6	2026-09-09 10:00:00	2026-09-16 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	7	2026-09-11 10:00:00	2026-09-18 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	8	2026-09-13 10:00:00	2026-09-20 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	9	2026-09-15 10:00:00	2026-09-22 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	10	2026-09-17 10:00:00	2026-09-24 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|11	11	2026-09-19 10:00:00	2026-09-26 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|12	12	2026-09-21 10:00:00	2026-09-28 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|13	13	2026-09-23 10:00:00	2026-09-30 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|14	14	2026-09-25 10:00:00	2026-10-02 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|15	15	2026-09-27 10:00:00	2026-10-04 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|16	16	2026-09-29 10:00:00	2026-10-06 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|17	17	2026-10-01 10:00:00	2026-10-08 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|18	18	2026-10-03 10:00:00	2026-10-10 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|19	19	2026-10-05 10:00:00	2026-10-12 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|20	20	2026-10-07 10:00:00	2026-10-14 00:00:00	5	Entregado en Biblioteca Central	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|programa_academico
+C|id_programa|integer|0|0|1|nextval('programa_academico_id_programa_seq'::regclass)
+C|codigo|character varying|20|0|0|
+C|nombre|character varying|120|0|0|
+C|id_facultad|integer|0|0|0|
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	ING-SIS	Ingeniería de Sistemas	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	ING-IND	Ingeniería Industrial	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	ECO-ADM	Administración de Empresas	2	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	SAL-ENF	Enfermería	3	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	BAS-MAT	Matemáticas	4	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	DER-DER	Derecho	5	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	EDU-LIC	Licenciatura en Informática	6	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	ARQ-ARQ	Arquitectura	7	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	SOC-PSI	Psicología	8	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	COM-SOC	Comunicación Social	9	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|rol
+C|id_rol|integer|0|0|1|nextval('rol_id_rol_seq'::regclass)
+C|nombre|character varying|50|0|0|
+C|descripcion|character varying|200|1|0|
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	admin	Administrador del sistema	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	coordinador	Coordinador de Bienestar Universitario: supervisa préstamos, sanciones y catálogos	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	estudiante	Estudiante que presta y solicita objetos	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|sancion
+C|id_sancion|integer|0|0|1|nextval('sancion_id_sancion_seq'::regclass)
+C|codigo|character varying|40|0|0|('SAN-'::text || substr(md5(((random())::text || (clock_timestamp())::text)), 1, 12))
+C|id_usuario|integer|0|0|0|
+C|id_prestamo|integer|0|1|0|
+C|motivo|character varying|200|0|0|
+C|fecha_inicio|date|0|0|0|CURRENT_DATE
+C|fecha_fin|date|0|0|0|
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	SAN-0001	16	6	Devolución tardía	2026-07-01 00:00:00	2026-07-16 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	SAN-0002	17	7	Devolución tardía	2026-07-04 00:00:00	2026-07-19 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	SAN-0003	18	8	Devolución tardía	2026-07-07 00:00:00	2026-07-22 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	SAN-0004	19	9	Devolución tardía	2026-07-10 00:00:00	2026-07-25 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	SAN-0005	20	10	Incumplimiento de horario de entrega	2026-07-13 00:00:00	2026-07-28 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	SAN-0006	21	11	Devolución tardía	2026-07-16 00:00:00	2026-07-31 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	SAN-0007	22	12	Devolución tardía	2026-07-19 00:00:00	2026-08-03 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	SAN-0008	23	13	Objeto devuelto con desgaste	2026-07-22 00:00:00	2026-08-06 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	SAN-0009	4	14	Incumplimiento de horario de entrega	2026-07-25 00:00:00	2026-08-09 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	SAN-0010	5	15	Devolución tardía	2026-07-28 00:00:00	2026-08-12 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|11	SAN-0011	6	16	Objeto devuelto con desgaste	2026-07-31 00:00:00	2026-08-15 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|12	SAN-0012	7	17	Objeto devuelto con desgaste	2026-08-03 00:00:00	2026-08-18 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|13	SAN-0013	8	18	Devolución tardía	2026-08-06 00:00:00	2026-08-21 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|14	SAN-0014	9	19	Devolución tardía	2026-08-09 00:00:00	2026-08-24 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|15	SAN-0015	10	20	Objeto devuelto con desgaste	2026-08-12 00:00:00	2026-08-27 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|16	SAN-0016	16	6	Incumplimiento de horario de entrega	2026-08-15 00:00:00	2026-08-30 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|17	SAN-0017	17	7	Objeto devuelto con desgaste	2026-08-18 00:00:00	2026-09-02 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|18	SAN-0018	18	8	Incumplimiento de horario de entrega	2026-08-21 00:00:00	2026-09-05 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|19	SAN-0019	19	9	Incumplimiento de horario de entrega	2026-08-24 00:00:00	2026-09-08 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|20	SAN-0020	20	10	Objeto devuelto con desgaste	2026-08-27 00:00:00	2026-09-11 00:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|solicitud_prestamo
+C|id_solicitud|integer|0|0|1|nextval('solicitud_prestamo_id_solicitud_seq'::regclass)
+C|codigo|character varying|40|0|0|('SOL-'::text || substr(md5(((random())::text || (clock_timestamp())::text)), 1, 12))
+C|id_objeto|integer|0|0|0|
+C|id_solicitante|integer|0|0|0|
+C|id_estado_solicitud|integer|0|0|0|
+C|fecha_inicio_deseada|date|0|0|0|
+C|fecha_fin_deseada|date|0|0|0|
+C|mensaje|character varying|300|1|0|
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	SOL-0001	1	11	2	2026-10-26 00:00:00	2026-11-02 00:00:00	Hola, necesito el objeto para una exposición	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	SOL-0002	2	12	2	2026-10-25 00:00:00	2026-11-01 00:00:00	Hola, necesito el objeto para estudiar	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	SOL-0003	3	13	2	2026-10-24 00:00:00	2026-10-31 00:00:00	Hola, necesito el objeto para un parcial	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	SOL-0004	4	14	2	2026-10-23 00:00:00	2026-10-30 00:00:00	Hola, necesito el objeto para un parcial	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	SOL-0005	5	15	2	2026-10-22 00:00:00	2026-10-29 00:00:00	Hola, necesito el objeto para estudiar	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	SOL-0006	6	16	5	2026-09-09 00:00:00	2026-09-16 00:00:00	Hola, necesito el objeto para un proyecto	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	SOL-0007	7	17	5	2026-09-11 00:00:00	2026-09-18 00:00:00	Hola, necesito el objeto para un laboratorio	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	SOL-0008	8	18	5	2026-09-13 00:00:00	2026-09-20 00:00:00	Hola, necesito el objeto para una exposición	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	SOL-0009	9	19	5	2026-09-15 00:00:00	2026-09-22 00:00:00	Hola, necesito el objeto para un laboratorio	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	SOL-0010	10	20	5	2026-09-17 00:00:00	2026-09-24 00:00:00	Hola, necesito el objeto para un proyecto	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|11	SOL-0011	11	21	5	2026-09-19 00:00:00	2026-09-26 00:00:00	Hola, necesito el objeto para un proyecto	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|12	SOL-0012	12	22	5	2026-09-21 00:00:00	2026-09-28 00:00:00	Hola, necesito el objeto para un parcial	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|13	SOL-0013	13	23	5	2026-09-23 00:00:00	2026-09-30 00:00:00	Hola, necesito el objeto para un parcial	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|14	SOL-0014	14	4	5	2026-09-25 00:00:00	2026-10-02 00:00:00	Hola, necesito el objeto para estudiar	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|15	SOL-0015	15	5	5	2026-09-27 00:00:00	2026-10-04 00:00:00	Hola, necesito el objeto para estudiar	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|16	SOL-0016	16	6	5	2026-09-29 00:00:00	2026-10-06 00:00:00	Hola, necesito el objeto para una exposición	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|17	SOL-0017	17	7	5	2026-10-01 00:00:00	2026-10-08 00:00:00	Hola, necesito el objeto para una exposición	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|18	SOL-0018	18	8	5	2026-10-03 00:00:00	2026-10-10 00:00:00	Hola, necesito el objeto para una exposición	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|19	SOL-0019	19	9	5	2026-10-05 00:00:00	2026-10-12 00:00:00	Hola, necesito el objeto para estudiar	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|20	SOL-0020	20	10	5	2026-10-07 00:00:00	2026-10-14 00:00:00	Hola, necesito el objeto para un proyecto	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|usuario
+C|id_usuario|integer|0|0|1|nextval('usuario_id_usuario_seq'::regclass)
+C|nombres|character varying|80|0|0|
+C|apellidos|character varying|80|0|0|
+C|correo|character varying|120|0|0|
+C|codigo_estudiantil|character varying|20|1|0|
+C|telefono|character varying|20|1|0|
+C|contrasena_hash|character varying|255|0|0|
+C|id_rol|integer|0|0|0|
+C|id_programa|integer|0|1|0|
+C|estado|boolean|0|0|0|true
+C|creado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+C|actualizado|timestamp without time zone|0|0|0|CURRENT_TIMESTAMP
+R|1	Admin	Sistema	admin@uni.edu.co	\N	3000000000	$2b$12$aWUqdIj5Wpm5gVUwYBQUfuYFLzcVtYqbZVwBwJNcDIYGRI5PVoTn.	1	\N	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	Patricia	Restrepo	patricia.restrepo@uni.edu.co	\N	3015550101	$2b$12$UqVnduRJmANur1uTrvAEZOW6syhG3MP1UqixG7PB/oeAvGLfkSKF6	2	\N	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	Hernán	Villa	hernan.villa@uni.edu.co	\N	3015550102	$2b$12$UqVnduRJmANur1uTrvAEZOW6syhG3MP1UqixG7PB/oeAvGLfkSKF6	2	\N	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	Ana	Gómez	ana@uni.edu.co	2021001	30203530829	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	Carlos	Pérez	carlos@uni.edu.co	2021002	30221810111	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	2	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	Valentina	Rodríguez	valentina.rodriguez@uni.edu.co	2021003	30129990608	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	3	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	Santiago	Martínez	santiago.martinez@uni.edu.co	2021004	30137135241	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	4	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	Daniela	López	daniela.lopez@uni.edu.co	2021005	30281973060	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	5	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	Andrés	Herrera	andres.herrera@uni.edu.co	2021006	30264602037	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	6	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	Camila	Torres	camila.torres@uni.edu.co	2021007	30112441955	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	7	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|11	Juan Pablo	Ramírez	juan.ramirez@uni.edu.co	2021008	30238015764	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	8	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|12	María José	Castro	maria.castro@uni.edu.co	2021009	30125037655	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	9	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|13	Sebastián	Morales	sebastian.morales@uni.edu.co	2021010	30128122250	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	10	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|14	Laura	Vargas	laura.vargas@uni.edu.co	2021011	30113077052	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|15	Mateo	Rojas	mateo.rojas@uni.edu.co	2021012	30172037872	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	2	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|16	Isabella	Jiménez	isabella.jimenez@uni.edu.co	2021013	30287655194	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	3	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|17	Felipe	Ortiz	felipe.ortiz@uni.edu.co	2021014	30114709137	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	4	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|18	Sofía	Mendoza	sofia.mendoza@uni.edu.co	2021015	30113234302	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	5	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|19	Diego	Cárdenas	diego.cardenas@uni.edu.co	2021016	30198031986	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	6	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|20	Paula	Navarro	paula.navarro@uni.edu.co	2021017	30142976225	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	7	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|21	Nicolás	Guerrero	nicolas.guerrero@uni.edu.co	2021018	30286175466	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	8	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|22	Mariana	Salazar	mariana.salazar@uni.edu.co	2021019	30274032085	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	9	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|23	Julián	Pineda	julian.pineda@uni.edu.co	2021020	30134151952	$2b$12$UWPN5ujVE5wven/vqvFc2uXQJaWyyiuarPSufOmbr.3fzFL7DO1kS	3	10	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+F|usuario|id_usuario|calificacion|id_evaluado
+F|usuario|id_usuario|calificacion|id_evaluador
+F|prestamo|id_prestamo|calificacion|id_prestamo
+F|condicion_objeto|id_condicion|devolucion|id_condicion_devolucion
+F|prestamo|id_prestamo|devolucion|id_prestamo
+F|objeto|id_objeto|imagen_objeto|id_objeto
+F|modulo|id_modulo|moduloxrol|id_modulo
+F|rol|id_rol|moduloxrol|id_rol
+F|usuario|id_usuario|notificacion|id_usuario
+F|categoria_objeto|id_categoria|objeto|id_categoria
+F|condicion_objeto|id_condicion|objeto|id_condicion
+F|usuario|id_usuario|objeto|id_propietario
+F|condicion_objeto|id_condicion|prestamo|id_condicion_entrega
+F|solicitud_prestamo|id_solicitud|prestamo|id_solicitud
+F|facultad|id_facultad|programa_academico|id_facultad
+F|prestamo|id_prestamo|sancion|id_prestamo
+F|usuario|id_usuario|sancion|id_usuario
+F|estado_solicitud|id_estado_solicitud|solicitud_prestamo|id_estado_solicitud
+F|objeto|id_objeto|solicitud_prestamo|id_objeto
+F|usuario|id_usuario|solicitud_prestamo|id_solicitante
+F|programa_academico|id_programa|usuario|id_programa
+F|rol|id_rol|usuario|id_rol

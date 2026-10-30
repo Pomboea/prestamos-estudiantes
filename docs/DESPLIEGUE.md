@@ -48,3 +48,18 @@ mysql -h HOST -P PUERTO -u USUARIO -p BASE < api-express/sql/schema.sql
 mysql -h HOST -P PUERTO -u USUARIO -p BASE < api-express/sql/seed.sql
 ```
 > `schema.sql` de PostgreSQL **borra y recrea** el esquema `public`; úselo solo en una BD dedicada al proyecto.
+
+## Taller 1 Corte 2: frontend y nueva semilla
+1. Render: abra el Blueprint del repositorio y haga clic en **Sync**. Se crea el sitio estático `prestamos-frontend-svelte`, y las APIs se vuelven a desplegar con el último commit.
+2. Al arrancar, las APIs detectan la semilla anterior y recrean el esquema con la semilla del Taller 1:
+   - FastAPI revisa si existe el rol `coordinador`.
+   - Express revisa si existe el punto `PE-POS`.
+   - Si quiere forzar la recarga, ponga `FORZAR_SEMILLA=true`, despliegue y luego vuelva a `false`.
+3. También puede recargar a mano:
+   ```bash
+   PG_URL_REMOTA=... MYSQL_URL_REMOTA=... python herramientas/recargar_remoto.py
+   ```
+4. Variables del sitio estático:
+   - `VITE_API_URL=https://api-prestamos-fastapi.onrender.com`
+   - `VITE_API_AUX_URL=https://api-prestamos-express.onrender.com`
+   - Regla de reescritura `/*` → `/index.html`.

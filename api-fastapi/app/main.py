@@ -15,10 +15,10 @@ app = FastAPI(title="API Préstamos de Objetos entre Estudiantes",
 app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS.split(","),
                    allow_methods=["*"], allow_headers=["*"])
 
-app.include_router(auth.router)
-app.include_router(flujo.router)
+app.include_router(auth.router, prefix="/api")
+app.include_router(flujo.router, prefix="/api")
 for r in recursos.routers:
-    app.include_router(r)
+    app.include_router(r, prefix="/api")
 
 
 @app.get("/", tags=["Salud"])

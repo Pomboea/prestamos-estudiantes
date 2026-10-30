@@ -45,3 +45,23 @@ def registro(datos: s.RegistroEstudiante, bd: Session = Depends(obtener_bd)):
 @router.get("/yo", response_model=s.UsuarioSalida, summary="Perfil del usuario autenticado")
 def yo(usuario: m.Usuario = Depends(usuario_actual)):
     return usuario
+
+
+@router.get("/mis-modulos", summary="Módulos y permisos del rol del usuario (tabla moduloxrol) para armar el menú")
+def mis_modulos(usuario: m.Usuario = Depends(usuario_actual), bd: Session = Depends(obtener_bd)):
+    filas = bd.execute(
+        select(m.Modulo, m.ModuloXRol).join(m.ModuloXRol, m.ModuloXRol.id_modulo == m.Modulo.id_modulo)
+        .where(m.ModuloXRol.id_rol == usuario.id_rol, m.ModuloXRol.estado.is_(True), m.Modulo.estado.is_(True),
+               m.ModuloXRol.puede_leer.is_(True))
+        .order_by(m.Modulo.id_modulo)).all()
+    rol = bd.get(m.Rol, usuario.id_rol)
+    return {"usuario": f"{usuario.nombres} {usuario.apellidos}", "rol": rol.nombre,
+            "modulos": [{"nombre": mo.nombre, "ruta": mo.ruta, "descripcion": mo.descripcion,
+                         "leer": p.puede_leer, "crear": p.puede_crear,
+                         "actualizar": p.puede_actualizar, "eliminar": p.puede_eliminar} for mo, p in filas]}
+
+
+@router.get("/directorio", summary="Nombres de usuarios activos (para mostrar nombres en lugar de IDs)")
+def directorio(usuario: m.Usuario = Depends(usuario_actual), bd: Session = Depends(obtener_bd)):
+    us = bd.scalars(select(m.Usuario).where(m.Usuario.estado.is_(True))).all()
+    return [{"id_usuario": u.id_usuario, "nombre": f"{u.nombres} {u.apellidos}"} for u in us]

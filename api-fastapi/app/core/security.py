@@ -12,7 +12,7 @@ from app.core.config import config
 from app.db.session import obtener_bd
 from app.models import Usuario, Rol, Modulo, ModuloXRol
 
-esquema_oauth2 = OAuth2PasswordBearer(tokenUrl="/auth/login")
+esquema_oauth2 = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 
 
 def hashear_contrasena(clave: str) -> str:

@@ -242,3 +242,58 @@ erDiagram
         timestamp creado
         timestamp actualizado }
 ```
+
+---
+
+# Taller 1 – Corte 2: Frontend SvelteKit + APIs
+
+Esta versión adapta el proyecto a la estructura del documento **"CRUD SvelteKit + FastAPI"** y a los requisitos del Taller 1.
+El documento completo está en `Taller1_Corte2_Documentacion.docx`.
+
+## Cambios principales
+- **APIs**: todas las rutas de FastAPI quedan en `/api/<recurso>/` (con barra final, como en el documento CRUD). Hay dos endpoints nuevos:
+  - `GET /api/auth/mis-modulos`: devuelve el menú del rol desde `moduloxrol`.
+  - `GET /api/auth/directorio`: devuelve nombres para mostrar en lugar de IDs.
+- **Roles**: hay 3 roles, `admin`, `coordinador` y `estudiante`. Los permisos por módulo se leen de la base de datos.
+- **Datos**: 20 registros en las tablas principales y 10 en las secundarias (generados con `herramientas/generar_seed.py`).
+- **`frontend-svelte/`**: proyecto SvelteKit (`npx sv create`, plantilla minimal, JavaScript), con esta estructura:
+  - `src/lib/components/`: 12 componentes reutilizables (Navbar, Footer, Header, Card, Boton, Alerta, Cargando, Insignia, Modal, CampoFormulario, DataTable, CrudModulo).
+  - `src/lib/services/api_<recurso>.js`: funciones `obtenerX`, `obtenerXPorId`, `crearX`, `actualizarX`, `eliminarX` y `procesarRespuesta`.
+  - `src/routes/+layout.svelte`: Navbar, `<slot />` y Footer, más la protección de rutas por rol.
+  - `src/routes/<modulo>/+page.svelte`: una página por módulo, con DataTables, y un solo formulario para crear y editar (`idEditando`).
+- **`access/`**: base de datos en Microsoft Access (`.accdb`) con relaciones. Ver `access/GUIA_ACCESS.md`.
+- **`capturas/`**: capturas numeradas de cada paso.
+
+## Ejecutar en local
+```bash
+# 1. Bases de datos: crear 'prestamos' (PostgreSQL) y 'prestamos_aux' (MySQL), luego:
+python herramientas/cargar_bd.py          # ejecuta schema.sql + seed.sql en las dos (o use psql / mysql)
+# 2. API FastAPI
+cd api-fastapi && python -m venv .venv && .venv/bin/pip install -r requirements.txt
+cp .env.example .env && .venv/bin/uvicorn app.main:app --reload --port 8000
+# 3. API Express
+cd api-express && npm install && cp .env.example .env && npm run dev     # puerto 3000
+# 4. Frontend
+cd frontend-svelte && npm install && npm run dev                        # http://localhost:5173
+```
+Las dos APIs deben usar la **misma `SECRET_KEY`** en su `.env`.
+
+## Usuarios de prueba
+| Rol | Correo | Contraseña |
+|---|---|---|
+| admin | admin@uni.edu.co | Admin123* |
+| coordinador | patricia.restrepo@uni.edu.co / hernan.villa@uni.edu.co | Coordinador123* |
+| estudiante | ana@uni.edu.co, carlos@uni.edu.co (y 18 más) | Estudiante123* |
+
+## Pruebas
+- `api-fastapi`: `pytest`. Resultado: 16 pruebas aprobadas. Usa la base `prestamos_test`; defina `DATABASE_URL` si su usuario no es `prestamos`.
+- `api-express`: `npm test`. Resultado: 7 pruebas aprobadas. Usa la base `prestamos_aux_test`; defina `DB_USER` y `DB_PASSWORD`.
+
+## Nube
+Para publicar el proyecto, siga estos pasos:
+1. Despliegue las dos APIs como antes (ver `render.yaml` y `docs/DESPLIEGUE.md`).
+2. Publique el frontend como sitio estático. El build usa `adapter-static`.
+   - Comando de build: `npm install && npm run build`.
+   - Carpeta a publicar: `build`.
+   - Variables de entorno: `VITE_API_URL` (la URL de FastAPI) y `VITE_API_AUX_URL` (la URL de Express). Hay un ejemplo en `frontend-svelte/.env.example`.
+   - Regla de reescritura: `/*` → `/index.html`.

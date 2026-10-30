@@ -1,0 +1,100 @@
+T|horario_atencion
+C|id_horario|int|0|0|1|auto_increment
+C|id_punto|int|0|0|0|
+C|dia_semana|tinyint|0|0|0|
+C|hora_apertura|time|0|0|0|
+C|hora_cierre|time|0|0|0|
+C|estado|tinyint|0|0|0|
+C|creado|timestamp|0|0|0|DEFAULT_GENERATED
+C|actualizado|timestamp|0|0|0|DEFAULT_GENERATED on update CURRENT_TIMESTAMP
+R|1	1	1	1899-12-30 07:00:00	1899-12-30 19:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	1	6	1899-12-30 07:00:00	1899-12-30 12:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	2	1	1899-12-30 07:00:00	1899-12-30 19:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	2	6	1899-12-30 07:00:00	1899-12-30 12:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	3	1	1899-12-30 07:00:00	1899-12-30 19:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	3	6	1899-12-30 07:00:00	1899-12-30 12:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	4	1	1899-12-30 07:00:00	1899-12-30 19:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	4	6	1899-12-30 07:00:00	1899-12-30 12:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	5	1	1899-12-30 07:00:00	1899-12-30 19:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	5	6	1899-12-30 07:00:00	1899-12-30 12:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|11	6	1	1899-12-30 07:00:00	1899-12-30 19:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|12	6	6	1899-12-30 07:00:00	1899-12-30 12:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|13	7	1	1899-12-30 07:00:00	1899-12-30 19:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|14	7	6	1899-12-30 07:00:00	1899-12-30 12:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|15	8	1	1899-12-30 07:00:00	1899-12-30 19:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|16	8	6	1899-12-30 07:00:00	1899-12-30 12:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|17	9	1	1899-12-30 07:00:00	1899-12-30 19:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|18	9	6	1899-12-30 07:00:00	1899-12-30 12:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|19	10	1	1899-12-30 07:00:00	1899-12-30 19:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|20	10	6	1899-12-30 07:00:00	1899-12-30 12:00:00	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|punto_entrega
+C|id_punto|int|0|0|1|auto_increment
+C|codigo|varchar|20|0|0|
+C|nombre|varchar|100|0|0|
+C|ubicacion|varchar|200|0|0|
+C|sede|varchar|80|0|0|
+C|estado|tinyint|0|0|0|
+C|creado|timestamp|0|0|0|DEFAULT_GENERATED
+C|actualizado|timestamp|0|0|0|DEFAULT_GENERATED on update CURRENT_TIMESTAMP
+R|1	PE-BIB	Biblioteca Central	Primer piso, junto a préstamo externo	Sede Principal	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	PE-ING	Bloque de Ingeniería	Lobby bloque B	Sede Principal	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	PE-CAF	Cafetería Norte	Mesa de bienestar	Sede Norte	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	PE-BIE	Oficina de Bienestar	Segundo piso, bloque A	Sede Principal	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	PE-LAB	Laboratorios de Ciencias	Recepción laboratorios	Sede Principal	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	PE-DEP	Coliseo deportivo	Taquilla	Sede Deportiva	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	PE-ART	Bloque de Artes	Recepción	Sede Centro	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	PE-SAL	Bloque de Salud	Recepción primer piso	Sede Salud	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	PE-ADM	Edificio Administrativo	Ventanilla 3	Sede Principal	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	PE-POS	Bloque de Posgrados	Lobby	Sede Centro	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|reporte_incidencia
+C|id_reporte|int|0|0|1|auto_increment
+C|codigo|varchar|40|0|0|
+C|id_tipo|int|0|0|0|
+C|id_punto|int|0|1|0|
+C|id_prestamo|int|0|0|0|
+C|id_usuario_reporta|int|0|0|0|
+C|descripcion|varchar|500|0|0|
+C|resuelto|tinyint|0|0|0|
+C|estado|tinyint|0|0|0|
+C|creado|timestamp|0|0|0|DEFAULT_GENERATED
+C|actualizado|timestamp|0|0|0|DEFAULT_GENERATED on update CURRENT_TIMESTAMP
+R|1	INC-0001	3	9	6	16	Se devolvió sucio	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	INC-0002	1	8	7	17	Se devolvió sucio	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	INC-0003	7	7	8	18	El cargador no enciende	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	INC-0004	7	2	9	19	El cargador no enciende	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	INC-0005	7	1	10	20	Falta el estuche	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	INC-0006	2	4	11	21	El cargador no enciende	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	INC-0007	3	2	12	22	Presenta rayones nuevos	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	INC-0008	10	1	13	23	El objeto se devolvió con retraso	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	INC-0009	1	10	14	4	Falta el estuche	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	INC-0010	9	2	15	5	Presenta rayones nuevos	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|11	INC-0011	10	1	16	6	El objeto se devolvió con retraso	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|12	INC-0012	4	10	17	7	El cargador no enciende	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|13	INC-0013	3	5	18	8	Presenta rayones nuevos	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|14	INC-0014	10	6	19	9	El cargador no enciende	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|15	INC-0015	2	2	20	10	El cargador no enciende	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|16	INC-0016	8	8	6	16	El cargador no enciende	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|17	INC-0017	5	2	7	17	Falta el estuche	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|18	INC-0018	2	6	8	18	Presenta rayones nuevos	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|19	INC-0019	8	3	9	19	Se devolvió sucio	1	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|20	INC-0020	1	4	10	20	Se devolvió sucio	0	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+T|tipo_incidencia
+C|id_tipo|int|0|0|1|auto_increment
+C|nombre|varchar|60|0|0|
+C|gravedad|enum|5|0|0|
+C|estado|tinyint|0|0|0|
+C|creado|timestamp|0|0|0|DEFAULT_GENERATED
+C|actualizado|timestamp|0|0|0|DEFAULT_GENERATED on update CURRENT_TIMESTAMP
+R|1	Daño del objeto	alta	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|2	Pérdida	alta	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|3	Retraso en devolución	media	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|4	Objeto incompleto	media	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|5	Objeto sucio	baja	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|6	Accesorio faltante	media	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|7	Falla eléctrica	alta	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|8	Uso indebido	alta	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|9	No se presentó a la entrega	baja	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+R|10	Otro	baja	1	2026-10-29 21:07:23	2026-10-29 21:07:23
+F|punto_entrega|id_punto|horario_atencion|id_punto
+F|punto_entrega|id_punto|reporte_incidencia|id_punto
+F|tipo_incidencia|id_tipo|reporte_incidencia|id_tipo

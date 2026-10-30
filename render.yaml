@@ -1,4 +1,5 @@
-# Blueprint de Render (raíz del repositorio): BD PostgreSQL gratuita + API FastAPI + API Express.
+# Blueprint de Render (raíz del repositorio): BD PostgreSQL gratuita + API FastAPI + API Express
+# + frontend SvelteKit (sitio estático, Taller 1 Corte 2).
 # La BD MySQL de la API Express se crea aparte (Railway/Aiven/Clever Cloud) y se pega en MYSQL_URL.
 # En Render: New > Blueprint > conecte el repositorio de GitHub.
 databases:
@@ -27,6 +28,10 @@ services:
         generateValue: true
       - key: ACCESS_TOKEN_EXPIRE_MINUTES
         value: "60"
+      - key: CORS_ORIGINS
+        value: "*"   # o la URL del frontend, p. ej. https://prestamos-frontend-svelte.onrender.com
+      - key: FORZAR_SEMILLA
+        value: "false"   # "true" recrea esquema + semilla en cada arranque
 
   - type: web
     name: api-prestamos-express
@@ -43,3 +48,24 @@ services:
         value: "false"
       - key: SECRET_KEY
         sync: false   # debe ser igual a la SECRET_KEY de la API FastAPI
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: FORZAR_SEMILLA
+        value: "false"
+
+  # Frontend SvelteKit (adapter-static). Todas las rutas se reescriben a index.html (SPA).
+  - type: web
+    name: prestamos-frontend-svelte
+    runtime: static
+    rootDir: frontend-svelte
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        value: https://api-prestamos-fastapi.onrender.com
+      - key: VITE_API_AUX_URL
+        value: https://api-prestamos-express.onrender.com
