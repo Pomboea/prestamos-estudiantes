@@ -39,7 +39,7 @@ tabla([
  ('Responsive y menú funcional', 'Cumplido: menú hamburguesa en móvil (captura 42)'),
  ('20 registros en tablas principales y 10 en secundarias', 'Cumplido excepto: devolucion 15 (solo hay devolución para préstamos terminados) y rol 3 (solo existen 3 roles)'),
  ('Base de datos en Microsoft Access con relaciones', 'Entregado: access/prestamos.accdb y prestamos_aux.accdb + guía para imprimir relaciones'),
- ('Versión local y en la nube', 'Local: funcionando. Nube: preparado (adapter-static, variables VITE_API_URL), falta publicarlo'),
+ ('Versión local y en la nube', 'Cumplido: local y en Render (frontend estático + 2 APIs)'),
 ], ['Requisito', 'Estado'])
 
 h('2. Roles y usuarios de prueba')
@@ -79,12 +79,16 @@ for f, pie in [('30_estudiante_crea_objeto_formulario.png','formulario sin IDs')
     img(f, pie)
 
 h('8. Versión en la nube')
-for x in ['APIs: render.yaml y docs/DESPLIEGUE.md (servicios FastAPI y Express, misma SECRET_KEY).',
+for x in ['Frontend: https://prestamos-frontend-svelte.onrender.com',
+          'API FastAPI: https://api-prestamos-fastapi.onrender.com/docs',
+          'API Express: https://api-prestamos-express.onrender.com/api/puntos-entrega/',
+          'Repositorio: https://github.com/Pomboea/prestamos-estudiantes','APIs: render.yaml y docs/DESPLIEGUE.md (servicios FastAPI y Express, misma SECRET_KEY).',
           'Frontend: sitio estático. Build: npm install && npm run build. Publicar carpeta build/. Variables VITE_API_URL y VITE_API_AUX_URL. Regla de reescritura /* → /index.html.',
-          'Después de desplegar, cargar schema.sql y seed.sql en las bases de la nube.']: b(x)
+          'Las APIs recrean el esquema con la semilla nueva al arrancar si detectan la anterior (o con FORZAR_SEMILLA=true); también herramientas/recargar_remoto.py.']: b(x)
+for f, pie in [('48_nube_inicio_admin.png','nube: inicio admin'),('49_nube_coordinador_puntos_entrega.png','nube: módulo Express'),('50_nube_estudiante_solicitudes.png','nube: solicitudes del estudiante')]: img(f, pie)
 
 h('9. Pendientes y observaciones')
-for x in ['Falta publicar la versión en la nube y colocar aquí sus URL.',
+for x in ['En el plan gratuito de Render las APIs se duermen: la primera petición puede tardar ~1 minuto.',
           'El taller indica que no se acepta una base de datos hecha con IA: revise y rehaga/ajuste en Access usted mismo antes de entregar.',
           'devolucion tiene 15 registros y rol 3 (no 20/10) por la lógica del negocio.',
           '"Estructura de la clase 1" para las APIs se interpretó como el documento CRUD (rutas /api/<recurso>/).']: b(x)
