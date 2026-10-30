@@ -6,7 +6,10 @@ const pool = require('./db');
 const { puntos, horarios, tipos, reportes } = require('./routes');
 
 const app = express();
-app.use(cors({ origin: (process.env.CORS_ORIGINS || '*').split(',') }));
+// CORS_ORIGINS='*' (o sin definir) permite cualquier origen; si no, lista separada por comas.
+// Ojo: cors() no trata ['*'] como comodín, por eso se pasa '*' como texto.
+const origenes = (process.env.CORS_ORIGINS || '*').trim();
+app.use(cors({ origin: origenes === '*' ? '*' : origenes.split(',').map((o) => o.trim()) }));
 app.use(express.json());
 
 app.get('/', (req, res) => res.json({
