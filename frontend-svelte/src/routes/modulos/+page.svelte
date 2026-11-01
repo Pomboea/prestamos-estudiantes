@@ -41,6 +41,7 @@
   titulo="Módulos"
   subtitulo="Módulos (páginas) del sistema"
   modulo="modulos"
+  nombreSingular="módulo"
   pk="id_modulo"
   {servicio}
   {fuentes}

@@ -44,6 +44,7 @@
   titulo="Notificaciones"
   subtitulo="Avisos generados por el sistema y por los coordinadores"
   modulo="notificaciones"
+  nombreSingular="notificación"
   pk="id_notificacion"
   {servicio}
   {fuentes}

@@ -1,5 +1,7 @@
 <script>
-  // Módulo CRUD reutilizable: DataTable + formulario en Modal + permisos desde moduloxrol.
+  // Módulo CRUD reutilizable con la estructura del documento CRUD (Partes 5 a 9):
+  // Card con formulario (crear/editar con idEditando) + mensaje + Card con la lista (DataTable).
+  // Permisos desde moduloxrol.
   // Cada página (routes/<modulo>/+page.svelte) lo configura con su servicio, campos y columnas.
   import { onMount } from 'svelte';
   import { sesion } from '$lib/services/api_auth.js';
@@ -8,7 +10,6 @@
   import Boton from './Boton.svelte';
   import Alerta from './Alerta.svelte';
   import Cargando from './Cargando.svelte';
-  import Modal from './Modal.svelte';
   import CampoFormulario from './CampoFormulario.svelte';
   import DataTable from './DataTable.svelte';
 
@@ -24,15 +25,15 @@
   export let accionesExtra = [];      // [{ texto, variante, visible(fila, sesion), ejecutar(fila) }]
   export let filtro = null;           // (fila, sesion) => boolean
   export let alCrear = null;          // función propia para crear (por ejemplo, flujo de solicitud)
+  export let nombreSingular = 'registro'; // para los títulos: 'Registrar categoría' / 'Editar categoría'
+  export let campoNombre = null;      // campo que se muestra en el confirm() de eliminar
 
   let filas = [];
   let opciones = {};                  // { clave: [{valor, etiqueta}] }
   let cargando = false;
   let mensaje = '';
   let tipoMensaje = 'info';
-  let modalAbierto = false;
   let idEditando = null;
-  let formulario = {};
 
   $: permiso = ($sesion?.modulos || []).find((m) => m.nombre === modulo) || {};
 
@@ -87,37 +88,39 @@
     await cargarRegistros();
   });
 
-  function abrirNuevo() {
-    idEditando = null;
-    formulario = {};
-    campos.forEach((c) => (formulario[c.nombre] = c.tipo === 'bool' ? (c.porDefecto ?? false) : (c.porDefecto ?? null)));
-    modalAbierto = true;
+  function valoresIniciales() {
+    const vacio = {};
+    campos.forEach((c) => (vacio[c.nombre] = c.tipo === 'bool' ? (c.porDefecto ?? false) : (c.porDefecto ?? null)));
+    return vacio;
   }
 
-  async function prepararEdicion(fila) {
+  let formulario = valoresIniciales();
+
+  function limpiarFormulario() {
+    formulario = valoresIniciales();
+    idEditando = null;
+  }
+
+  async function prepararEdicion(id) {
     try {
-      const registro = await servicio.obtener(fila[pk]);
+      const registro = await servicio.obtener(id);
       idEditando = registro[pk];
-      formulario = {};
+      const datos = {};
       campos.forEach((c) => {
         let v = registro[c.nombre];
         if (c.tipo === 'bool') v = v === true || v === 1;
         if (c.tipo === 'hora' && typeof v === 'string') v = v.slice(0, 5);
-        formulario[c.nombre] = c.tipo === 'clave' ? null : (v ?? null);
+        datos[c.nombre] = c.tipo === 'clave' ? null : (v ?? null);
       });
-      modalAbierto = true;
+      formulario = datos;
+      mensaje = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
       mostrar('No se pudo cargar el registro: ' + error.message, 'error');
     }
   }
 
-  function limpiarFormulario() {
-    modalAbierto = false;
-    idEditando = null;
-    formulario = {};
-  }
-
-  async function guardar(evento) {
+  async function guardarRegistro(evento) {
     evento.preventDefault();
     const datos = {};
     for (const c of campos) {
@@ -146,14 +149,18 @@
     }
   }
 
-  async function borrar(fila) {
-    const seguro = confirm('¿Eliminar este registro? (se cambiará su estado a inactivo)');
+  async function borrarRegistro(fila) {
+    const nombre = campoNombre ? fila[campoNombre] : columnasTabla[0]?.valor(fila);
+    const seguro = confirm('¿Eliminar a ' + nombre + '? (se cambiará su estado a inactivo)');
     if (!seguro) {
       return;
     }
     try {
       const respuesta = await servicio.eliminar(fila[pk]);
       mostrar(respuesta.mensaje || 'Registro eliminado', 'exito');
+      if (idEditando === fila[pk]) {
+        limpiarFormulario();
+      }
       await cargarRegistros();
     } catch (error) {
       mostrar('No se pudo eliminar: ' + error.message, 'error');
@@ -174,16 +181,41 @@
 
 <Header {titulo} {subtitulo} />
 
+{#if (permiso.crear && permitirCrear) || idEditando !== null}
+  <Card>
+    <h2>{idEditando === null ? 'Registrar ' + nombreSingular : 'Editar ' + nombreSingular}</h2>
+    <form on:submit={guardarRegistro}>
+      {#each campos as campo (campo.nombre)}
+        {#if !(idEditando === null && campo.soloEditar) && !(idEditando !== null && campo.soloCrear)}
+          <CampoFormulario
+            etiqueta={campo.etiqueta}
+            nombre={campo.nombre}
+            tipo={campo.fuente ? 'select' : campo.tipo}
+            opciones={campo.fuente ? opciones[campo.fuente] || [] : campo.opciones || []}
+            requerido={campo.requerido && !(campo.tipo === 'clave' && idEditando !== null)}
+            ayuda={campo.ayuda || ''}
+            bind:valor={formulario[campo.nombre]}
+          />
+        {/if}
+      {/each}
+      <div class="botones">
+        <Boton tipo="submit">{idEditando === null ? 'Registrar' : 'Guardar cambios'}</Boton>
+        {#if idEditando !== null}
+          <Boton variante="gris" on:click={limpiarFormulario}>Cancelar</Boton>
+        {/if}
+      </div>
+    </form>
+  </Card>
+{/if}
+
+<Alerta mensaje={mensaje} tipo={tipoMensaje} />
+
 <Card>
-  <div class="barra">
-    <h2>Registros</h2>
-    {#if permiso.crear && permitirCrear}
-      <Boton on:click={abrirNuevo}>+ Nuevo registro</Boton>
-    {/if}
-  </div>
-  <Alerta mensaje={mensaje} tipo={tipoMensaje} />
+  <h2>Lista de {titulo.toLowerCase()}</h2>
   {#if cargando && filas.length === 0}
     <Cargando />
+  {:else if filas.length === 0}
+    <p>No hay registros.</p>
   {:else}
     <DataTable {filas} columnas={columnasTabla} clave={pk}>
       <svelte:fragment slot="acciones" let:fila>
@@ -193,48 +225,19 @@
           {/if}
         {/each}
         {#if permiso.actualizar}
-          <Boton variante="editar" on:click={() => prepararEdicion(fila)}>Editar</Boton>
+          <Boton variante="editar" on:click={() => prepararEdicion(fila[pk])}>Editar</Boton>
         {/if}
         {#if permiso.eliminar}
-          <Boton variante="borrar" on:click={() => borrar(fila)}>Eliminar</Boton>
+          <Boton variante="borrar" on:click={() => borrarRegistro(fila)}>Eliminar</Boton>
         {/if}
       </svelte:fragment>
     </DataTable>
   {/if}
 </Card>
 
-<Modal titulo={idEditando === null ? 'Registrar' : 'Editar'} abierto={modalAbierto} on:cerrar={limpiarFormulario}>
-  <form on:submit={guardar}>
-    {#each campos as campo (campo.nombre)}
-      {#if !(idEditando === null && campo.soloEditar) && !(idEditando !== null && campo.soloCrear)}
-        <CampoFormulario
-          etiqueta={campo.etiqueta}
-          nombre={campo.nombre}
-          tipo={campo.fuente ? 'select' : campo.tipo}
-          opciones={campo.fuente ? opciones[campo.fuente] || [] : campo.opciones || []}
-          requerido={campo.requerido && !(campo.tipo === 'clave' && idEditando !== null)}
-          ayuda={campo.ayuda || ''}
-          bind:valor={formulario[campo.nombre]}
-        />
-      {/if}
-    {/each}
-    <div class="botones">
-      <Boton tipo="submit">{idEditando === null ? 'Registrar' : 'Guardar cambios'}</Boton>
-      <Boton variante="gris" on:click={limpiarFormulario}>Cancelar</Boton>
-    </div>
-  </form>
-</Modal>
-
 <style>
-  .barra {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
   h2 {
-    margin: 0;
+    margin-top: 0;
     color: #1e3a8a;
   }
   .botones {

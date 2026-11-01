@@ -43,6 +43,7 @@
   titulo="Horarios de atención"
   subtitulo="API Express + MySQL: horario de cada punto de entrega"
   modulo="horarios"
+  nombreSingular="horario"
   pk="id_horario"
   {servicio}
   {fuentes}

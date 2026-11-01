@@ -45,6 +45,7 @@
   titulo="Calificaciones"
   subtitulo="Reseñas entre quien presta y quien recibe"
   modulo="calificaciones"
+  nombreSingular="calificación"
   pk="id_calificacion"
   {servicio}
   {fuentes}

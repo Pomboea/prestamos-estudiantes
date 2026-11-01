@@ -67,6 +67,7 @@
   titulo="Solicitudes de préstamo"
   subtitulo="Función principal: un estudiante solicita, el propietario aprueba y entrega"
   modulo="solicitudes"
+  nombreSingular="solicitud"
   pk="id_solicitud"
   {servicio}
   {fuentes}

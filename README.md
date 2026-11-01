@@ -257,7 +257,7 @@ El documento completo está en `Taller1_Corte2_Documentacion.docx`.
 - **Roles**: hay 3 roles, `admin`, `coordinador` y `estudiante`. Los permisos por módulo se leen de la base de datos.
 - **Datos**: 20 registros en las tablas principales y 10 en las secundarias (generados con `herramientas/generar_seed.py`).
 - **`frontend-svelte/`**: proyecto SvelteKit (`npx sv create`, plantilla minimal, JavaScript), con esta estructura:
-  - `src/lib/components/`: 12 componentes reutilizables (Navbar, Footer, Header, Card, Boton, Alerta, Cargando, Insignia, Modal, CampoFormulario, DataTable, CrudModulo).
+  - `src/lib/components/`: 11 componentes reutilizables (Navbar, Footer, Header, Card, Boton, Alerta, Cargando, Insignia, CampoFormulario, DataTable, CrudModulo).
   - `src/lib/services/api_<recurso>.js`: funciones `obtenerX`, `obtenerXPorId`, `crearX`, `actualizarX`, `eliminarX` y `procesarRespuesta`.
   - `src/routes/+layout.svelte`: Navbar, `<slot />` y Footer, más la protección de rutas por rol.
   - `src/routes/<modulo>/+page.svelte`: una página por módulo, con DataTables, y un solo formulario para crear y editar (`idEditando`).
@@ -297,3 +297,20 @@ Para publicar el proyecto, siga estos pasos:
    - Carpeta a publicar: `build`.
    - Variables de entorno: `VITE_API_URL` (la URL de FastAPI) y `VITE_API_AUX_URL` (la URL de Express). Hay un ejemplo en `frontend-svelte/.env.example`.
    - Regla de reescritura: `/*` → `/index.html`.
+
+## Taller 1 · Conformidad con el documento CRUD (SvelteKit + FastAPI)
+
+| Punto del documento | Estado | Nota |
+|---|---|---|
+| `npx sv create`, plantilla minimal, JavaScript | Cumple | `jsconfig.json`, sin TypeScript |
+| `vite.config.js` con proxy `'/api': 'http://localhost:8000'` | Cumple + extra | se añade `'/api-aux'` → Express (3000) antes de `/api` |
+| `src/lib/components/` Navbar, Footer, Header, Card | Cumple | Header y Card idénticos al documento; Navbar dinámico (moduloxrol) |
+| `src/lib/services/api_<recurso>.js` con `procesarRespuesta`, `obtenerX`, `obtenerXPorId`, `crearX`, `actualizarX`, `eliminarX` | Cumple con diferencia | `procesarRespuesta` y cabeceras JWT están en `api_base.js` (compartido) |
+| `URL_BASE = '/api/<recurso>/'` con barra final | Cumple con diferencia | se antepone `API_PRINCIPAL` (vacío en local, URL de Render en la nube) |
+| `+layout.svelte` con Navbar, `<slot />`, Footer | Cumple + extra | protección de rutas por sesión/rol |
+| `+page.svelte` de inicio con Header y Card | Cumple | |
+| `routes/<modulo>/+page.svelte` | Cumple | 21 módulos |
+| Página: Header + Card con formulario (`idEditando`, "Registrar"/"Guardar cambios", "Cancelar"), mensaje, lista con Cargando / vacío / tabla, `confirm()` al eliminar, `onMount` | Cumple con diferencia | la lógica está en el componente reutilizable `CrudModulo` (requisito del taller: 10 componentes reutilizados) |
+| Tabla HTML con `{#each}` | Cumple + DataTables | requisito del taller |
+| Columna ID en la tabla | No se aplica a propósito | el taller prohíbe mostrar IDs |
+| API: `/api/<recurso>/` GET/POST, `/api/<recurso>/{id}` GET/PUT/DELETE, DELETE devuelve `{mensaje}` | Cumple | DELETE es lógico (estado=false) |

@@ -38,6 +38,7 @@
   titulo="Estados de solicitud"
   subtitulo="Catálogo de estados del flujo"
   modulo="estados_solicitud"
+  nombreSingular="estado de solicitud"
   pk="id_estado_solicitud"
   {servicio}
   {fuentes}

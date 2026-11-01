@@ -42,6 +42,7 @@
   titulo="Programas académicos"
   subtitulo="Programas por facultad"
   modulo="programas"
+  nombreSingular="programa"
   pk="id_programa"
   {servicio}
   {fuentes}

@@ -39,6 +39,7 @@
   titulo="Categorías de objetos"
   subtitulo="Tipos de objetos que se prestan"
   modulo="categorias"
+  nombreSingular="categoría"
   pk="id_categoria"
   {servicio}
   {fuentes}

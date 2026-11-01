@@ -47,6 +47,7 @@
   titulo="Permisos por rol"
   subtitulo="Tabla moduloxrol: qué módulos ve y qué puede hacer cada rol"
   modulo="permisos"
+  nombreSingular="permiso"
   pk="id_moduloxrol"
   {servicio}
   {fuentes}

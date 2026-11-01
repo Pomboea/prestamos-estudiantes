@@ -38,6 +38,7 @@
   titulo="Facultades"
   subtitulo="Facultades de la universidad"
   modulo="facultades"
+  nombreSingular="facultad"
   pk="id_facultad"
   {servicio}
   {fuentes}

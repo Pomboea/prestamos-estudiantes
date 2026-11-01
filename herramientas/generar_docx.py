@@ -56,7 +56,7 @@ img('46_access_accdb_verificado.png', 'archivos Access verificados')
 
 h('4. Estructura del frontend (documento CRUD)')
 for x in ['npx sv create frontend-svelte – plantilla minimal – JavaScript',
-          'src/lib/components/: Navbar, Footer, Header, Card, Boton, Alerta, Cargando, Insignia, Modal, CampoFormulario, DataTable, CrudModulo',
+          'src/lib/components/: Navbar, Footer, Header, Card, Boton, Alerta, Cargando, Insignia, CampoFormulario, DataTable, CrudModulo',
           'src/lib/services/api_<recurso>.js con procesarRespuesta, obtenerX, obtenerXPorId, crearX, actualizarX, eliminarX',
           'src/routes/+layout.svelte con Navbar, <slot /> y Footer; +page.svelte es el inicio; login/ y una carpeta por módulo',
           'vite.config.js: proxy /api → http://localhost:8000 y /api-aux → http://localhost:3000',

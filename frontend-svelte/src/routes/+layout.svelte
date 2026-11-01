@@ -40,7 +40,7 @@
   }
   .contenido {
     flex: 1;
-    width: 94%;
+    width: 90%;
     max-width: 1200px;
     margin: 24px auto;
   }

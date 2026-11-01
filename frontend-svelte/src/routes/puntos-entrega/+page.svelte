@@ -43,6 +43,7 @@
   titulo="Puntos de entrega"
   subtitulo="API Express + MySQL: lugares donde se entregan los objetos"
   modulo="puntos_entrega"
+  nombreSingular="punto de entrega"
   pk="id_punto"
   {servicio}
   {fuentes}

@@ -43,6 +43,7 @@
   titulo="Devoluciones"
   subtitulo="Objetos devueltos y su condición"
   modulo="devoluciones"
+  nombreSingular="devolución"
   pk="id_devolucion"
   {servicio}
   {fuentes}

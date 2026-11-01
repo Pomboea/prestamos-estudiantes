@@ -45,6 +45,7 @@
   titulo="Sanciones"
   subtitulo="Sanciones por retrasos o daños (las asigna el coordinador)"
   modulo="sanciones"
+  nombreSingular="sanción"
   pk="id_sancion"
   {servicio}
   {fuentes}

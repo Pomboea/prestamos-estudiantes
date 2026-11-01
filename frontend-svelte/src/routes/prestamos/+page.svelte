@@ -52,6 +52,7 @@
   titulo="Préstamos"
   subtitulo="Préstamos registrados (se crean al entregar una solicitud aprobada)"
   modulo="prestamos"
+  nombreSingular="préstamo"
   pk="id_prestamo"
   {servicio}
   {fuentes}

@@ -50,6 +50,7 @@
   titulo="Usuarios"
   subtitulo="Administradores, coordinadores y estudiantes"
   modulo="usuarios"
+  nombreSingular="usuario"
   pk="id_usuario"
   {servicio}
   {fuentes}

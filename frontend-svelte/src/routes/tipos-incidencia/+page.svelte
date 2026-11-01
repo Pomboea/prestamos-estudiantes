@@ -40,6 +40,7 @@
   titulo="Tipos de incidencia"
   subtitulo="API Express + MySQL: catálogo de incidencias"
   modulo="tipos_incidencia"
+  nombreSingular="tipo de incidencia"
   pk="id_tipo"
   {servicio}
   {fuentes}

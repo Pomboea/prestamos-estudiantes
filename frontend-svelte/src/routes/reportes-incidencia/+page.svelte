@@ -47,6 +47,7 @@
   titulo="Reportes de incidencia"
   subtitulo="API Express + MySQL: daños, pérdidas o retrasos en un préstamo"
   modulo="reportes_incidencia"
+  nombreSingular="reporte de incidencia"
   pk="id_reporte"
   {servicio}
   {fuentes}

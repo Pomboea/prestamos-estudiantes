@@ -47,6 +47,7 @@
   titulo="Objetos"
   subtitulo="Objetos publicados para préstamo"
   modulo="objetos"
+  nombreSingular="objeto"
   pk="id_objeto"
   {servicio}
   {fuentes}

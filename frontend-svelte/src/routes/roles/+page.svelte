@@ -40,6 +40,7 @@
   titulo="Roles"
   subtitulo="Roles del sistema"
   modulo="roles"
+  nombreSingular="rol"
   pk="id_rol"
   {servicio}
   {fuentes}

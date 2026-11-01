@@ -39,6 +39,7 @@
   titulo="Condiciones de objeto"
   subtitulo="Estado físico de los objetos"
   modulo="condiciones"
+  nombreSingular="condición"
   pk="id_condicion"
   {servicio}
   {fuentes}

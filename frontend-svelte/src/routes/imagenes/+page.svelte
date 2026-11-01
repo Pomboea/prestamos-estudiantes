@@ -40,6 +40,7 @@
   titulo="Imágenes de objetos"
   subtitulo="Fotos de los objetos publicados"
   modulo="imagenes"
+  nombreSingular="imagen"
   pk="id_imagen"
   {servicio}
   {fuentes}
