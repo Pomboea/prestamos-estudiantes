@@ -256,15 +256,106 @@ El documento completo está en `Taller1_Corte2_Documentacion.docx`.
   - `GET /api/auth/directorio`: devuelve nombres para mostrar en lugar de IDs.
 - **Roles**: hay 3 roles, `admin`, `coordinador` y `estudiante`. Los permisos por módulo se leen de la base de datos.
 - **Datos**: 20 registros en las tablas principales y 10 en las secundarias (generados con `herramientas/generar_seed.py`).
-- **`frontend-svelte/`**: proyecto SvelteKit (`npx sv create`, plantilla minimal, JavaScript), con esta estructura:
-  - `src/lib/components/`: 11 componentes reutilizables (Navbar, Footer, Header, Card, Boton, Alerta, Cargando, Insignia, CampoFormulario, DataTable, CrudModulo).
-  - `src/lib/services/api_<recurso>.js`: funciones `obtenerX`, `obtenerXPorId`, `crearX`, `actualizarX`, `eliminarX` y `procesarRespuesta`.
-  - `src/routes/+layout.svelte`: Navbar, `<slot />` y Footer, más la protección de rutas por rol.
-  - `src/routes/<modulo>/+page.svelte`: una página por módulo, con DataTables, y un solo formulario para crear y editar (`idEditando`).
+- **`presU/`** (nombre del proyecto frontend; en `package.json` es `"name": "presu"` porque npm exige minúsculas): proyecto SvelteKit (`npx sv create`, plantilla minimal, JavaScript) con la misma estructura de la imagen del docente:
+  - `src/lib/assets/`, `src/lib/components/` (10 componentes reutilizables: Navbar, Footer, Header, Card, Boton, Alerta, Cargando, Insignia, CampoFormulario, DataTable) y `src/lib/index.js` (sesión compartida).
+  - `src/lib/services/`: solo `api_<recurso>.js`, uno por tabla (21). Cada uno es autocontenido: su propio `URL_BASE`, `encabezados()` (JWT) y `procesarRespuesta`, más `obtenerX`, `obtenerXPorId`, `crearX`, `actualizarX`, `eliminarX`. El login vive en `api_usuario.js` y el flujo de préstamo en `api_solicitud.js` / `api_prestamo.js`.
+  - `src/routes/+layout.svelte` (Navbar, `<slot />`, Footer, protección por rol) y `src/routes/+page.svelte` (inicio).
+  - `src/routes/<modulo>/+page.svelte`: una carpeta por módulo con solo `+page.svelte`, que trae su propio CRUD como en el documento (`cargarX`, `limpiarFormulario`, `guardarX`, `prepararEdicion`, `borrarX`, `idEditando`, `confirm()`), con DataTables.
+
+```
+presU/src/
+├── lib/
+│   ├── assets/
+│   │   └── favicon.png
+│   ├── components/
+│   │   ├── Alerta.svelte
+│   │   ├── Boton.svelte
+│   │   ├── CampoFormulario.svelte
+│   │   ├── Card.svelte
+│   │   ├── Cargando.svelte
+│   │   ├── DataTable.svelte
+│   │   ├── Footer.svelte
+│   │   ├── Header.svelte
+│   │   ├── Insignia.svelte
+│   │   └── Navbar.svelte
+│   ├── services/
+│   │   ├── api_calificacion.js
+│   │   ├── api_categoria.js
+│   │   ├── api_condicion.js
+│   │   ├── api_devolucion.js
+│   │   ├── api_estado_solicitud.js
+│   │   ├── api_facultad.js
+│   │   ├── api_horario.js
+│   │   ├── api_imagen.js
+│   │   ├── api_modulo.js
+│   │   ├── api_moduloxrol.js
+│   │   ├── api_notificacion.js
+│   │   ├── api_objeto.js
+│   │   ├── api_prestamo.js
+│   │   ├── api_programa.js
+│   │   ├── api_punto_entrega.js
+│   │   ├── api_reporte_incidencia.js
+│   │   ├── api_rol.js
+│   │   ├── api_sancion.js
+│   │   ├── api_solicitud.js
+│   │   ├── api_tipo_incidencia.js
+│   │   └── api_usuario.js
+│   └── index.js
+├── routes/
+│   ├── calificaciones/
+│   │   └── +page.svelte
+│   ├── categorias/
+│   │   └── +page.svelte
+│   ├── condiciones/
+│   │   └── +page.svelte
+│   ├── devoluciones/
+│   │   └── +page.svelte
+│   ├── estados-solicitud/
+│   │   └── +page.svelte
+│   ├── facultades/
+│   │   └── +page.svelte
+│   ├── horarios/
+│   │   └── +page.svelte
+│   ├── imagenes/
+│   │   └── +page.svelte
+│   ├── login/
+│   │   └── +page.svelte
+│   ├── modulos/
+│   │   └── +page.svelte
+│   ├── moduloxrol/
+│   │   └── +page.svelte
+│   ├── notificaciones/
+│   │   └── +page.svelte
+│   ├── objetos/
+│   │   └── +page.svelte
+│   ├── prestamos/
+│   │   └── +page.svelte
+│   ├── programas/
+│   │   └── +page.svelte
+│   ├── puntos-entrega/
+│   │   └── +page.svelte
+│   ├── reportes-incidencia/
+│   │   └── +page.svelte
+│   ├── roles/
+│   │   └── +page.svelte
+│   ├── sanciones/
+│   │   └── +page.svelte
+│   ├── solicitudes/
+│   │   └── +page.svelte
+│   ├── tipos-incidencia/
+│   │   └── +page.svelte
+│   ├── usuarios/
+│   │   └── +page.svelte
+│   ├── +layout.svelte
+│   └── +page.svelte
+└── app.html
+```
 - **`access/`**: base de datos en Microsoft Access (`.accdb`) con relaciones. Ver `access/GUIA_ACCESS.md`.
 - **`capturas/`**: capturas numeradas de cada paso.
 
 ## Ejecutar en local
+**Windows (sin admin):** doble clic en `iniciar-todo.bat` (raíz del proyecto). Inicia MySQL como proceso (`C:\Users\POMBO\mysql-data`, config `C:\Users\POMBO\mysql-data-config\my.ini`), abre una ventana para FastAPI (venv Python 3.12, `uvicorn app.main:app` en el puerto 8000), otra para Express (`npm run dev`, 3000) y otra para presU (`npm run dev`, 5173; si falta `node_modules` hace `npm install`), espera unos segundos y abre http://localhost:5173. Si falta un `.env`, lo copia de `.env.example`. PostgreSQL debe estar encendido.
+
 ```bash
 # 1. Bases de datos: crear 'prestamos' (PostgreSQL) y 'prestamos_aux' (MySQL), luego:
 python herramientas/cargar_bd.py          # ejecuta schema.sql + seed.sql en las dos (o use psql / mysql)
@@ -274,7 +365,7 @@ cp .env.example .env && .venv/bin/uvicorn app.main:app --reload --port 8000
 # 3. API Express
 cd api-express && npm install && cp .env.example .env && npm run dev     # puerto 3000
 # 4. Frontend
-cd frontend-svelte && npm install && npm run dev                        # http://localhost:5173
+cd presU && npm install && npm run dev                        # http://localhost:5173
 ```
 Las dos APIs deben usar la **misma `SECRET_KEY`** en su `.env`.
 
@@ -295,22 +386,17 @@ Para publicar el proyecto, siga estos pasos:
 2. Publique el frontend como sitio estático. El build usa `adapter-static`.
    - Comando de build: `npm install && npm run build`.
    - Carpeta a publicar: `build`.
-   - Variables de entorno: `VITE_API_URL` (la URL de FastAPI) y `VITE_API_AUX_URL` (la URL de Express). Hay un ejemplo en `frontend-svelte/.env.example`.
+   - Variables de entorno: `VITE_API_URL` (la URL de FastAPI) y `VITE_API_AUX_URL` (la URL de Express). Hay un ejemplo en `presU/.env.example`.
    - Regla de reescritura: `/*` → `/index.html`.
 
-## Taller 1 · Conformidad con el documento CRUD (SvelteKit + FastAPI)
+## Taller 1 · Conformidad con el documento CRUD y la estructura del docente
 
-| Punto del documento | Estado | Nota |
-|---|---|---|
-| `npx sv create`, plantilla minimal, JavaScript | Cumple | `jsconfig.json`, sin TypeScript |
-| `vite.config.js` con proxy `'/api': 'http://localhost:8000'` | Cumple + extra | se añade `'/api-aux'` → Express (3000) antes de `/api` |
-| `src/lib/components/` Navbar, Footer, Header, Card | Cumple | Header y Card idénticos al documento; Navbar dinámico (moduloxrol) |
-| `src/lib/services/api_<recurso>.js` con `procesarRespuesta`, `obtenerX`, `obtenerXPorId`, `crearX`, `actualizarX`, `eliminarX` | Cumple con diferencia | `procesarRespuesta` y cabeceras JWT están en `api_base.js` (compartido) |
-| `URL_BASE = '/api/<recurso>/'` con barra final | Cumple con diferencia | se antepone `API_PRINCIPAL` (vacío en local, URL de Render en la nube) |
-| `+layout.svelte` con Navbar, `<slot />`, Footer | Cumple + extra | protección de rutas por sesión/rol |
-| `+page.svelte` de inicio con Header y Card | Cumple | |
-| `routes/<modulo>/+page.svelte` | Cumple | 21 módulos |
-| Página: Header + Card con formulario (`idEditando`, "Registrar"/"Guardar cambios", "Cancelar"), mensaje, lista con Cargando / vacío / tabla, `confirm()` al eliminar, `onMount` | Cumple con diferencia | la lógica está en el componente reutilizable `CrudModulo` (requisito del taller: 10 componentes reutilizados) |
-| Tabla HTML con `{#each}` | Cumple + DataTables | requisito del taller |
-| Columna ID en la tabla | No se aplica a propósito | el taller prohíbe mostrar IDs |
-| API: `/api/<recurso>/` GET/POST, `/api/<recurso>/{id}` GET/PUT/DELETE, DELETE devuelve `{mensaje}` | Cumple | DELETE es lógico (estado=false) |
+| Punto | Estado |
+|---|---|
+| Carpeta del proyecto `presU` creada con `npx sv create` (minimal, JavaScript) | Cumple (`name` en package.json: `presu`, npm no acepta mayúsculas) |
+| `src/lib/{assets, components, services, index.js}` | Cumple |
+| `src/lib/services/` solo con `api_<recurso>.js`, autocontenidos con `procesarRespuesta` | Cumple (21 archivos, uno por tabla) |
+| `src/routes/<modulo>/+page.svelte` (solo ese archivo), `+layout.svelte`, `+page.svelte`, `src/app.html` | Cumple (sin `+layout.js`, grupos, parámetros ni hooks) |
+| Cada página con su CRUD como el documento (`idEditando`, `guardarX`, `prepararEdicion`, `borrarX`, `confirm()`, `onMount`) | Cumple |
+| `vite.config.js` con `'/api': 'http://localhost:8000'` | Cumple; además `'/api-aux'` hacia Express |
+| Tabla con columna ID | No se muestra: el taller prohíbe IDs visibles. Se usa DataTables (requisito del taller) |

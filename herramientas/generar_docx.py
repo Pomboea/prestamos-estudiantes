@@ -55,10 +55,12 @@ p('Microsoft Access: access/prestamos.accdb (17 tablas, 22 relaciones con integr
 img('46_access_accdb_verificado.png', 'archivos Access verificados')
 
 h('4. Estructura del frontend (documento CRUD)')
-for x in ['npx sv create frontend-svelte – plantilla minimal – JavaScript',
-          'src/lib/components/: Navbar, Footer, Header, Card, Boton, Alerta, Cargando, Insignia, CampoFormulario, DataTable, CrudModulo',
-          'src/lib/services/api_<recurso>.js con procesarRespuesta, obtenerX, obtenerXPorId, crearX, actualizarX, eliminarX',
-          'src/routes/+layout.svelte con Navbar, <slot /> y Footer; +page.svelte es el inicio; login/ y una carpeta por módulo',
+for x in ['npx sv create presU – plantilla minimal – JavaScript (carpeta presU; en package.json "name": "presu" porque npm exige minúsculas)',
+          'src/lib/: assets/, components/, services/ e index.js (sesión compartida), igual que la imagen del docente',
+          'src/lib/components/ (10 reutilizables): Navbar, Footer, Header, Card, Boton, Alerta, Cargando, Insignia, CampoFormulario, DataTable',
+          'src/lib/services/: solo api_<recurso>.js, uno por tabla (21), cada uno con su URL_BASE, encabezados (JWT), procesarRespuesta, obtenerX, obtenerXPorId, crearX, actualizarX, eliminarX',
+          'src/routes/: +layout.svelte (Navbar, <slot />, Footer), +page.svelte (inicio) y una carpeta por módulo (incluido login/) con solo +page.svelte; src/app.html',
+          'Cada +page.svelte trae su propio CRUD como el documento: onMount, cargarX, limpiarFormulario, guardarX, prepararEdicion, borrarX',
           'vite.config.js: proxy /api → http://localhost:8000 y /api-aux → http://localhost:3000',
           'Mismo formulario para crear y editar (idEditando) y confirm() antes de eliminar']: b(x)
 img('47b_arbol_despues_frontend.png', 'árbol del frontend', 5)
@@ -67,7 +69,8 @@ h('5. Ejecución local paso a paso')
 for x in ['Crear las bases prestamos (PostgreSQL) y prestamos_aux (MySQL) y ejecutar schema.sql y seed.sql de cada API (o python herramientas/cargar_bd.py).',
           'api-fastapi: python -m venv .venv, pip install -r requirements.txt, copiar .env.example a .env, uvicorn app.main:app --reload --port 8000',
           'api-express: npm install, copiar .env.example a .env (misma SECRET_KEY), npm run dev',
-          'frontend-svelte: npm install, npm run dev y abrir http://localhost:5173']: d.add_paragraph(x, style='List Number')
+          'presU: npm install, npm run dev y abrir http://localhost:5173',
+          'Atajo en Windows (sin admin): doble clic en iniciar-todo.bat en la raíz. Inicia MySQL como proceso (C:\\Users\\POMBO\\mysql-data, config C:\\Users\\POMBO\\mysql-data-config\\my.ini), abre ventanas para FastAPI (8000), Express (3000) y presU (5173; hace npm install si falta) y abre el navegador.']: d.add_paragraph(x, style='List Number')
 for f, pie in [('04a_instalacion_fastapi.png','instalación FastAPI'),('04c_instalacion_frontend.png','instalación frontend'),('06_arranque_fastapi.png','arranque FastAPI'),('07_arranque_express.png','arranque Express'),('08_arranque_frontend.png','arranque SvelteKit'),('10_swagger_fastapi.png','Swagger de FastAPI'),('09_pruebas_endpoints_curl.png','pruebas de endpoints (crear, editar, borrado lógico, JWT compartido, 401/403)')]: img(f, pie)
 
 h('6. Pantallas por rol')

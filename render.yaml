@@ -57,7 +57,7 @@ services:
   - type: web
     name: prestamos-frontend-svelte
     runtime: static
-    rootDir: frontend-svelte
+    rootDir: presU
     buildCommand: npm ci && npm run build
     staticPublishPath: build
     routes:
